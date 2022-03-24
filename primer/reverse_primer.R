@@ -6,8 +6,6 @@ library("here")
 here()              #here() sets your working directory to the top of your project
 read_file <- "primer/orig_primers.fasta"
 write_file <- "primer/primers_revcompl_orig.fasta"
-#read_file <- "C://Users/lisa-maria.kuso/Documents/Sequenzierfile/primer/orig_primers.fasta"
-#write_file <- "C://Users/lisa-maria.kuso/Documents/Sequenzierfile/primer/primers_revcompl_orig.fasta"
 
 #read-in fasta-file with Biostrings Package
 fastaFile <- readDNAStringSet(read_file)

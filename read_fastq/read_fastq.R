@@ -2,20 +2,21 @@
 #library("seqRFLP")
 library("ShortRead")
 library("ggplot2")
+library("here")
 
 #fastq file einlesen
-#filepath <- "C://Users/lisa-maria.kuso/Documents/Sequenzierfile/NGS_head.fastq"
-filepath <- "C://Users/lisa-maria.kuso/Documents/Sequenzierfile/Rohdaten_Metainfo/NG-5514_pcr_R1.fastq"
+here()
+filepath <- "read_fastq/test_sequence.fastq"
 
 #memory.size(max=TRUE)
-memory.limit(36000)
+#memory.limit(36000)
 
 fastqFile <- readFastq(filepath, format="fastq", with.qualities = TRUE)
 sequence <- sread(fastqFile)
 qual <- quality(fastqFile)
 name <- id(fastqFile)
 
-#Zeichnen der Sequenzlängen
+#Zeichnen der Sequenzl?ngen
 widths <- as.data.frame(sequence@ranges@width)
 ggplot(widths) +
   geom_histogram(aes(x=sequence@ranges@width))
