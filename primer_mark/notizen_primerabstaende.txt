@@ -1,0 +1,30 @@
+insg 540/2500 primer gefunden (in short_seq.fastq = erste 2500 Reads)
+
+	1960)keine primer: nichts machen, ursprünglich langes read
+
+2 verschiedene primer direkt hintereinander (insg 98 mal = 196 primer)
+	97)primer_revprimer_fw: oft, ab Ende primer rev abschneiden (index=erste stelle primer_fw oder ende primer_rev+1)
+
+	1)primer_fwprimer_rev:selten, ab Ende primer rev abschneiden (index = ende primer_rev +1) 
+
+2 gleiche primer direkt hintereinander (insg 23 mal = 46 primer)
+	13)primer_fwprimer_fw: sollte nicht sein? ignorieren
+
+	10)primer_revprimer_rev: sollte nicht sein?
+
+primer alleine (insg 298)
+	107)primer_rev ohne direkten nachbarn(könnte aber ein paar Basen weiter einer sein)
+
+	191)primer_fw ohne direkten Nachbarn (könnte aber ein paar Basen weiter einer sein)
+
+
+1 oder mehr Basen  dazwischen (insg 27)
+27)primer_(rev|fw)[ACGT]+primer_(rev|fw): zwischen 2 primern 1 oder mehr basen:
+
+	10)primer_fw[ACGT]+primer_rev
+
+	2)primer_rev[ACGT]+primer_fw
+
+	14)primer_fw[ACGT]+primer_fw
+
+	3)primer_rev[ACGT]+primer_rev

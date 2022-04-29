@@ -1,33 +1,41 @@
-#library("Biostrings")
+library("Biostrings")
 #library("seqRFLP")
-library("ShortRead")
+#library("ShortRead")
 library("ggplot2")
 library("here")
 
-#fastq file einlesen
+# read-in fastq file
 here()
-filepath <- "read_fastq/test_sequence.fastq"
+fastq_path <- "read_fastq/test_sequence.fastq"
+primer_path <- "primer/orig_primers.fasta"
+primer_revcompl_path <- "primer/primers_revcompl.fasta"
+
+fastqFile <- readDNAStringSet(fastq_path, format="fastq")
+primer <- readDNAStringSet(primer_path)
+
+# illumina adapter seq
+vmatchPattern('CTGTCTCTTATACACATCT', fastqFile)
+#keine illumina adapter gefunden!
 
 #memory.size(max=TRUE)
 #memory.limit(36000)
 
-fastqFile <- readFastq(filepath, format="fastq", with.qualities = TRUE)
-sequence <- sread(fastqFile)
-qual <- quality(fastqFile)
-name <- id(fastqFile)
+#fastqFile <- readFastq(fastq_path, format="fastq", with.qualities = TRUE)
+#sequence <- sread(fastqFile)
+#qual <- quality(fastqFile)
+#name <- id(fastqFile)
 
-#Zeichnen der Sequenzl?ngen
-widths <- as.data.frame(sequence@ranges@width)
-ggplot(widths) +
-  geom_histogram(aes(x=sequence@ranges@width))
+# Histogram of sequence lengths
+#widths <- as.data.frame(sequence@ranges@width)
+#ggplot(widths) +
+  #geom_histogram(aes(x=sequence@ranges@width))
 
-#Zeichnen der Qualities
-numqscores <- as(qual, 'matrix')
-avgscore <- rowMeans(numqscores)
-avgscore <- as.data.frame(avgscore)
+# Histogram of quality scores
+#numqscores <- as(qual, 'matrix')
+#avgscore <- rowMeans(numqscores)
+#avgscore <- as.data.frame(avgscore)
 
-ggplot(avgscore) +
-  geom_histogram(aes(x=avgscore))
+#ggplot(avgscore) +
+  #geom_histogram(aes(x=avgscore))
 
-#dataframe machen
-#df <- as.data.frame(cbind(sequence, qual, name))
+# patternmatching (with primers)

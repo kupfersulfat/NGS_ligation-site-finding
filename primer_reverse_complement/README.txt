@@ -1,0 +1,1 @@
+reverse_primer.R script is to build the reverse complement of orig_primers.fasta and save it in primers_revcompl_orig.fasta
